@@ -114,7 +114,7 @@ while(have_posts()):
                                 <span class="bp-pack-hero__price-note">قیمت با تغییر تعداد محصولات به‌روزرسانی می‌شود.</span>
                             </div>
 
-                            <button class="bp-button bp-button--primary bp-pack-hero__button" type="submit" form="bp-pack-form" data-pack-submit <?php disabled($available_products<1); ?>>
+                            <button class="bp-button bp-button--primary bp-pack-hero__button" type="submit" form="bp-pack-form" data-pack-submit <?php echo $unavailable_products>0?'aria-describedby="bp-pack-stock-warning" ':''; ?><?php disabled($available_products<1); ?>>
                                 <img class="bp-button__icon" src="<?php echo esc_url(get_theme_file_uri('assets/icons/arrow-left.svg')); ?>" alt="" aria-hidden="true" width="16" height="16" decoding="async">
                                 <span class="bp-button__label">افزودن پک به سبد خرید</span>
                             </button>
@@ -212,7 +212,7 @@ while(have_posts()):
                                     <span class="bp-pack-checkout__units"><b data-pack-selected><?php echo esc_html(bluprint_english_digits(number_format_i18n($units))); ?></b> واحد انتخاب شده</span>
                                 </div>
 
-                                <button class="bp-button bp-button--primary bp-pack-checkout__button" type="submit" data-pack-submit <?php disabled($available_products<1); ?>>
+                                <button class="bp-button bp-button--primary bp-pack-checkout__button" type="submit" data-pack-submit <?php echo $unavailable_products>0?'aria-describedby="bp-pack-stock-warning" ':''; ?><?php disabled($available_products<1); ?>>
                                     <img class="bp-button__icon" src="<?php echo esc_url(get_theme_file_uri('assets/icons/arrow-left.svg')); ?>" alt="" aria-hidden="true" width="16" height="16" decoding="async">
                                     <span class="bp-button__label">افزودن پک به سبد خرید</span>
                                 </button>
