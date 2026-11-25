@@ -3,7 +3,7 @@ Contributors: bluprint
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.0
+Stable tag: 1.3.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -18,8 +18,8 @@ Custom WooCommerce theme for the Bluprint storefront.
 == Installation ==
 1. Back up the current site.
 2. Upload the new theme ZIP from Appearance → Themes → Add New → Upload Theme.
-3. Replace the existing Bluprint Theme when prompted, or delete the old copy and install the new one.
-4. Keep WooCommerce and Rank Math active.
+3. Replace the existing Bluprint Theme when prompted, or delete the old copy and install the new one. If you see leftover folders named bluprint-theme-xxxx in wp-content/themes, back up the site, switch to another theme temporarily, then delete those leftover folders and keep only bluprint-theme.
+4. Keep WooCommerce active. Rank Math is optional; the theme provides SEO fallbacks when no SEO plugin is active.
 
 == GitHub updates ==
 1. Push this theme to a GitHub repository (repository root = this theme folder).
@@ -31,6 +31,12 @@ Custom WooCommerce theme for the Bluprint storefront.
 5. WordPress checks the newest GitHub tag on the Themes screen and in Bluprint → به‌روزرسانی قالب. If a Release contains bluprint-theme.zip it is preferred; otherwise the tag archive is used.
 
 == Changelog ==
+= 1.3.1 =
+* Improved accessible naming for category cards.
+* Hardened the shop and product-category templates against old/partial deployments.
+* Added SEO/performance fallbacks and a bundled core stylesheet to 1.3.x.
+* Rebuilt the installation package.
+
 = 1.3.0 =
 * Added theme-level SEO fallbacks: indexability, meta descriptions, Open Graph/Twitter tags, JSON-LD, breadcrumbs and sitemap enablement.
 * Fixed the shop and product-category 500 error when WooCommerce helper files are not loaded.
