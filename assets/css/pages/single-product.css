@@ -173,3 +173,45 @@
 @media(prefers-reduced-motion:reduce){
 .bp-single-product *,.bp-single-product *::before,.bp-single-product *::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}
 }
+
+/* Guard against WooCommerce's default alt-button focus/active colors. */
+.bp-single-product .bp-single-product__summary .single_add_to_cart_button,
+.bp-single-product .bp-single-product__summary .single_add_to_cart_button.button.alt{
+    background-color:var(--color-orange)!important;
+    background-image:none!important;
+    border-color:var(--color-on-orange)!important;
+    color:var(--color-on-orange)!important;
+}
+
+.bp-single-product .bp-single-product__summary .single_add_to_cart_button:hover:not(:disabled),
+.bp-single-product .bp-single-product__summary .single_add_to_cart_button.button.alt:hover:not(:disabled){
+    background-color:var(--color-action-hover)!important;
+    color:var(--color-on-orange)!important;
+}
+
+.bp-single-product .bp-single-product__summary .single_add_to_cart_button:focus,
+.bp-single-product .bp-single-product__summary .single_add_to_cart_button.button.alt:focus{
+    background-color:var(--color-orange)!important;
+    color:var(--color-on-orange)!important;
+}
+
+.bp-single-product .bp-single-product__summary .single_add_to_cart_button:active:not(:disabled),
+.bp-single-product .bp-single-product__summary .single_add_to_cart_button.button.alt:active:not(:disabled){
+    background-color:var(--color-action-pressed)!important;
+    color:var(--color-on-orange)!important;
+}
+
+.bp-single-product .bp-single-product__summary .single_add_to_cart_button:disabled,
+.bp-single-product .bp-single-product__summary .single_add_to_cart_button.disabled,
+.bp-single-product .bp-single-product__summary .single_add_to_cart_button.button.alt:disabled,
+.bp-single-product .bp-single-product__summary .single_add_to_cart_button.button.alt.disabled{
+    background-color:var(--color-pale)!important;
+    border-color:var(--color-line)!important;
+    color:var(--color-muted)!important;
+}
+
+.bp-single-product .bp-single-product__summary .single_add_to_cart_button:focus-visible,
+.bp-single-product .bp-single-product__summary .single_add_to_cart_button.button.alt:focus-visible{
+    outline:var(--focus-width) solid var(--color-blue);
+    outline-offset:var(--focus-offset);
+}
