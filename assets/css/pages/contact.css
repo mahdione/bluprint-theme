@@ -131,9 +131,9 @@
     display:inline-flex;
     align-items:center;
     gap:10px;
-    font-size:var(--font-size-technical);
-    letter-spacing:var(--tracking-technical);
-    line-height:var(--line-technical);
+    font-size:var(--font-size-caption);
+    letter-spacing:0;
+    line-height:1.8;
 }
 
 .bp-contact-hero__spec-key{
@@ -142,10 +142,12 @@
 }
 
 .bp-contact-hero__spec-value{
-    padding-inline-start:10px;
-    border-inline-start:1px solid var(--color-line);
+    padding-inline-start:0;
+    border-inline-start:0;
     color:var(--color-ink);
+    font-size:13px;
     font-weight:var(--weight-bold);
+    line-height:1.8;
 }
 
 .bp-contact-hero__rule{

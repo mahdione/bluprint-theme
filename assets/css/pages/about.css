@@ -63,10 +63,10 @@
     gap:10px;
     margin:0 0 18px;
     color:var(--color-muted);
-    font-size:var(--font-size-technical);
+    font-size:13px;
     font-weight:var(--weight-black);
-    letter-spacing:var(--tracking-technical);
-    line-height:var(--line-technical);
+    letter-spacing:0;
+    line-height:1.8;
 }
 
 .bp-about-hero__eyebrow::before{
