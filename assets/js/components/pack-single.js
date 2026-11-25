@@ -12,6 +12,7 @@
         const submitButtons=[...document.querySelectorAll('[data-pack-submit]')];
         const messages=[...document.querySelectorAll('[data-pack-message]')];
         const decimals=Number(config.decimals)||0;
+        const unavailableCount=Number.parseInt(form.dataset.packUnavailable,10)||0;
 
         const setMessage=(text,success=false)=>{
             messages.forEach(element=>{
@@ -58,10 +59,11 @@
 
                 const removeButton=row.querySelector('[data-pack-remove]');
                 if(removeButton){
-                    removeButton.textContent=quantity===0?'افزودن':'حذف';
+                    const title=row.querySelector('.bp-pack-item__title')?.textContent?.trim()||'';
+                    removeButton.textContent=unavailable?'ناموجود':(quantity===0?'افزودن':'حذف');
                     removeButton.setAttribute(
                         'aria-label',
-                        (quantity===0?'افزودن ':'حذف ')+row.querySelector('.bp-pack-item__title')?.textContent?.trim()
+                        unavailable?title+' ناموجود است':(quantity===0?'افزودن ':'حذف ')+title
                     );
                 }
 
@@ -149,7 +151,11 @@
         },true);
 
         document.addEventListener('bp:pack-added',()=>{
-            setMessage('پک به سبد خرید شما اضافه شد',true);
+            const base='پک به سبد خرید شما اضافه شد';
+            const note=unavailableCount>0
+                ?'؛ '+new Intl.NumberFormat('en-US').format(unavailableCount)+' محصول ناموجود در این پک اضافه نشد.'
+                :'';
+            setMessage(base+note,true);
         });
 
         document.addEventListener('bp:pack-add-failed',()=>{

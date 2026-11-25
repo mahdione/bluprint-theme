@@ -3,7 +3,7 @@ Contributors: bluprint
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.3
+Stable tag: 1.3.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,6 +31,13 @@ Custom WooCommerce theme for the Bluprint storefront.
 5. WordPress checks the newest GitHub tag on the Themes screen and in Bluprint → به‌روزرسانی قالب. If a Release contains bluprint-theme.zip it is preferred; otherwise the tag archive is used.
 
 == Changelog ==
+= 1.3.4 =
+* Added a minimal "view product" action to every product card inside a single pack.
+* Out-of-stock pack products now show a clear X mark, a dimmed image and a "ناموجود" badge.
+* Added a visible warning when some pack products are unavailable while still allowing the pack to be added with the available items.
+* Clarified unavailable item labels and the add-to-cart success message.
+* Rebuilt the installation package.
+
 = 1.3.3 =
 * Skinned every WooCommerce-generated button so no default purple appears in hover, focus, active, disabled or notice states.
 * Redesigned the pack metadata into bordered, high-contrast boxes with bold values and responsive columns.

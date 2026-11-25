@@ -294,6 +294,46 @@
     gap:clamp(14px,2vw,22px);
 }
 
+/* Warning shown when one or more pack products are out of stock. */
+.bp-pack-stock-warning{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    margin:0 0 18px;
+    padding:12px 14px;
+    border:1px solid color-mix(in srgb,#B42318 32%,var(--color-line));
+    border-inline-start:4px solid #B42318;
+    background:#FFF6F5;
+    color:#7A1A12;
+}
+
+.bp-pack-stock-warning::before{
+    content:"!";
+    display:grid;
+    flex:0 0 22px;
+    width:22px;
+    height:22px;
+    margin-top:1px;
+    place-items:center;
+    border-radius:50%;
+    background:#B42318;
+    color:#fff;
+    font-size:13px;
+    font-weight:var(--weight-black);
+    line-height:1;
+}
+
+.bp-pack-stock-warning p{
+    margin:0;
+    font-size:var(--font-size-caption);
+    line-height:1.9;
+}
+
+.bp-pack-stock-warning strong{
+    color:#B42318;
+    font-weight:var(--weight-black);
+}
+
 .bp-pack-item{
     position:relative;
     display:grid;
@@ -359,6 +399,20 @@
     object-fit:cover;
 }
 
+.bp-pack-item__unavailable-badge{
+    position:absolute;
+    z-index:2;
+    top:8px;
+    inset-inline-end:8px;
+    padding:2px 8px;
+    background:#B42318;
+    color:#fff;
+    font-size:var(--font-size-technical-small);
+    font-weight:var(--weight-black);
+    letter-spacing:var(--tracking-technical-small);
+    line-height:1.8;
+}
+
 /* A removed item keeps its image in place but marks it with a large X. */
 .bp-pack-item__media::after{
     content:"×";
@@ -384,9 +438,20 @@
     transform:scale(1);
 }
 
+/* Out-of-stock products keep a visible X so the card cannot be mistaken as
+   simply deselected. The "ناموجود" badge explains the mark. */
 .bp-pack-item.is-unavailable .bp-pack-item__media::after{
-    opacity:0;
-    visibility:hidden;
+    content:"×";
+    opacity:1;
+    visibility:visible;
+    transform:scale(1);
+    background:color-mix(in srgb,#B42318 14%,transparent);
+    color:#B42318;
+}
+
+.bp-pack-item.is-unavailable .bp-pack-item__media img{
+    filter:grayscale(1);
+    opacity:.42;
 }
 
 .bp-pack-item.is-removed .bp-pack-item__media img{
@@ -473,6 +538,37 @@
 
 .bp-pack-item__stock.is-out{
     color:#B42318;
+}
+
+/* Minimal "view product" action for each pack card. */
+.bp-pack-item__view{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    min-height:36px;
+    margin-top:10px;
+    padding:4px 10px;
+    border:1px solid var(--color-line);
+    background:var(--color-surface);
+    color:var(--color-ink);
+    font-size:var(--font-size-technical);
+    font-weight:var(--weight-bold);
+    line-height:1.8;
+    text-decoration:none;
+    transition:background-color var(--transition-fast),border-color var(--transition-fast),color var(--transition-fast);
+}
+
+.bp-pack-item__view img{
+    display:block;
+    flex:0 0 14px;
+    width:14px;
+    height:14px;
+}
+
+.bp-pack-item__view:hover{
+    border-color:var(--color-blue);
+    background:var(--color-pale);
+    color:var(--color-blue);
 }
 
 .bp-pack-item__purchase{
@@ -803,6 +899,17 @@
         display:none;
     }
 
+    .bp-pack-stock-warning{
+        margin-bottom:14px;
+        padding:10px 12px;
+    }
+
+    .bp-pack-item__view{
+        min-height:34px;
+        margin-top:8px;
+        padding:3px 8px;
+    }
+
     .bp-pack-item__purchase{
         display:grid;
         grid-template-columns:1fr auto;
@@ -886,6 +993,7 @@
     .bp-pack-qty,
     .bp-pack-qty button,
     .bp-pack-item__remove,
+    .bp-pack-item__view,
     .bp-pack-item__title a{
         transition:none!important;
     }

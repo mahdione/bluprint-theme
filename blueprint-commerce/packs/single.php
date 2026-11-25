@@ -38,6 +38,8 @@ while(have_posts()):
         $units+=$qty;
     }
 
+    $unavailable_products=max(0,$product_count-$available_products);
+
     $banner=function_exists('bluprint_get_banner_data')?bluprint_get_banner_data(1):['enabled'=>0];
     $show_banner=!empty($banner['enabled'])&&(
         trim($banner['title'])!==''||
@@ -130,9 +132,15 @@ while(have_posts()):
                     </header>
 
                     <?php if($products): ?>
-                        <form id="bp-pack-form" class="bp-pack-form" data-pack-form method="post" action="<?php echo esc_url(WC_AJAX::get_endpoint('bp_add_pack_to_cart')); ?>">
+                        <form id="bp-pack-form" class="bp-pack-form" data-pack-form data-pack-unavailable="<?php echo esc_attr((string)$unavailable_products); ?>" method="post" action="<?php echo esc_url(WC_AJAX::get_endpoint('bp_add_pack_to_cart')); ?>">
                             <input type="hidden" name="bp_pack_id" value="<?php echo esc_attr($pack_id); ?>">
                             <input type="hidden" name="bp_pack_nonce" value="<?php echo esc_attr(wp_create_nonce('bp_add_pack_to_cart')); ?>">
+
+                            <?php if($unavailable_products>0): ?>
+                                <div class="bp-pack-stock-warning" id="bp-pack-stock-warning">
+                                    <p><strong>توجه:</strong> <?php echo esc_html(bluprint_english_digits(number_format_i18n($unavailable_products))); ?> محصول از این پک در حال حاضر ناموجود است و به سبد خرید اضافه نمی‌شود. می‌توانی بقیه محصولات را اضافه کنی، اما پک کامل نخواهد بود.</p>
+                                </div>
+                            <?php endif; ?>
 
                             <div class="bp-pack-items">
                                 <?php foreach($products as $index=>$item): ?>
@@ -150,6 +158,9 @@ while(have_posts()):
 
                                         <a class="bp-pack-item__media" href="<?php echo esc_url($product->get_permalink()); ?>" tabindex="-1" aria-hidden="true">
                                             <?php echo wp_kses_post($product->get_image('woocommerce_thumbnail',['loading'=>'lazy','decoding'=>'async'])); ?>
+                                            <?php if(!$purchasable): ?>
+                                                <span class="bp-pack-item__unavailable-badge">ناموجود</span>
+                                            <?php endif; ?>
                                         </a>
 
                                         <div class="bp-pack-item__info">
@@ -168,6 +179,10 @@ while(have_posts()):
                                                     <?php echo $purchasable?'موجود':'ناموجود'; ?>
                                                 </span>
                                             </div>
+                                            <a class="bp-pack-item__view" href="<?php echo esc_url($product->get_permalink()); ?>">
+                                                <span>مشاهده محصول</span>
+                                                <img src="<?php echo esc_url(get_theme_file_uri('assets/icons/arrow-left.svg')); ?>" alt="" aria-hidden="true" width="14" height="14" loading="lazy" decoding="async">
+                                            </a>
                                         </div>
 
                                         <div class="bp-pack-item__purchase">
@@ -182,8 +197,8 @@ while(have_posts()):
                                                 <button type="button" data-qty-action="plus" aria-label="افزایش تعداد" <?php disabled(!$purchasable||$qty>=99); ?>>+</button>
                                             </div>
 
-                                            <button class="bp-pack-item__remove" type="button" data-pack-remove aria-label="<?php echo esc_attr(($qty>0?'حذف ':'افزودن ').$product->get_name()); ?>" <?php disabled(!$purchasable); ?>>
-                                                <?php echo $qty>0?'حذف':'افزودن'; ?>
+                                            <button class="bp-pack-item__remove" type="button" data-pack-remove aria-label="<?php echo esc_attr($purchasable?($qty>0?'حذف ':'افزودن ').$product->get_name():$product->get_name().' ناموجود است'); ?>" <?php disabled(!$purchasable); ?>>
+                                                <?php echo $purchasable?($qty>0?'حذف':'افزودن'):'ناموجود'; ?>
                                             </button>
                                         </div>
                                     </article>
