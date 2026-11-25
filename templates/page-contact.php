@@ -70,11 +70,8 @@ while(have_posts()):
             <?php if(trim($data['response_note'])!==''): ?>
                 <div class="bp-contact-hero__spec">
                     <span class="bp-contact-hero__spec-item">
-                        <span class="bp-contact-hero__spec-key">RESPONSE</span>
                         <span class="bp-contact-hero__spec-value"><?php echo esc_html($data['response_note']); ?></span>
                     </span>
-                    <span class="bp-contact-hero__rule" aria-hidden="true"></span>
-                    <span class="bp-contact-hero__spec-code">C—02 / CONTACT</span>
                 </div>
             <?php endif; ?>
         </div>

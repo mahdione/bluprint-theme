@@ -3,7 +3,7 @@ Contributors: bluprint
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.5
+Stable tag: 1.3.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,6 +31,15 @@ Custom WooCommerce theme for the Bluprint storefront.
 5. WordPress checks the newest GitHub tag on the Themes screen and in Bluprint → به‌روزرسانی قالب. If a Release contains bluprint-theme.zip it is preferred; otherwise the tag archive is used.
 
 == Changelog ==
+= 1.3.6 =
+* Removed decorative English eyebrows from the home hero, assurance and pack showcase sections.
+* Replaced the About page eyebrow with «درباره ما» and removed numbering from the story and values headings.
+* Removed the contact hero eyebrow plus the RESPONSE and C—02 / CONTACT labels.
+* Translated the pack archive eyebrow to Persian.
+* Made pack and product archive grids step down to two columns at 1180px and one column on very small phones.
+* Added a single-column layout for the product cards inside a pack on narrow phones.
+* Rebuilt the installation package.
+
 = 1.3.5 =
 * Linked the out-of-stock pack warning to the add-to-cart buttons for screen readers.
 * Rebuilt the installation package.

@@ -12,10 +12,10 @@ function bluprint_about_defaults(){
     $shop=function_exists('wc_get_page_permalink')?wc_get_page_permalink('shop'):home_url('/shop/');
 
     return [
-        'eyebrow'=>'A—01 / ABOUT BLUEPRINT',
+        'eyebrow'=>'درباره ما',
         'title'=>'ما نقشه‌ای برای ایده‌های تو می‌کشیم.',
         'intro'=>'بلوپرینت جایی است برای شروع؛ جایی که ابزار درست، کاغذ درست و یک ایده نیمه‌تمام کنار هم می‌نشینند تا چیزی ساخته شود. ما محصولات را نه به‌عنوان ویترین، بلکه به‌عنوان ابزار فکر کردن انتخاب می‌کنیم.',
-        'story_eyebrow'=>'۰۱ / داستان ما',
+        'story_eyebrow'=>'داستان ما',
         'story_title'=>'از یک صفحه سفید شروع شد.',
         'story_caption'=>'BLUEPRINT / SHEET A—01',
         'stat_1_number'=>'۹',
@@ -24,7 +24,7 @@ function bluprint_about_defaults(){
         'stat_2_label'=>'پروژه همراه',
         'stat_3_number'=>'۴۸',
         'stat_3_label'=>'پک آماده',
-        'values_eyebrow'=>'۰۲ / اصول کار',
+        'values_eyebrow'=>'اصول کار',
         'values_title'=>'چیزهایی که تغییر نمی‌کنند.',
         'value_1_title'=>'ابزار، نه ویترین',
         'value_1_text'=>'هر محصول باید کاری را ساده‌تر کند؛ اگر فقط تزئین باشد، جایش اینجا نیست.',
@@ -73,7 +73,16 @@ function bluprint_about_sanitize($input){
 function bluprint_about_get_data($post_id=0){
     $post_id=$post_id?absint($post_id):absint(get_queried_object_id());
     $stored=$post_id?get_post_meta($post_id,'_bluprint_about_page',true):[];
-    return wp_parse_args(is_array($stored)?$stored:[],bluprint_about_defaults());
+    $data=wp_parse_args(is_array($stored)?$stored:[],bluprint_about_defaults());
+
+    // Normalise content saved before the technical labels were removed.
+    if(trim((string)$data['eyebrow'])==='A—01 / ABOUT BLUEPRINT')$data['eyebrow']='درباره ما';
+
+    foreach(['story_eyebrow','values_eyebrow'] as $key){
+        $data[$key]=trim((string)preg_replace('/^\s*[0-9۰-۹]+\s*[\/—–-]\s*/u','',(string)$data[$key]));
+    }
+
+    return $data;
 }
 
 /**

@@ -39,7 +39,6 @@ $items=[
     <div class="bp-assurance__container">
         <div class="bp-assurance__header">
             <div class="bp-assurance__intro">
-                <p class="bp-assurance__eyebrow">A—02 / BEFORE YOU START</p>
                 <h2 class="bp-assurance__title" id="bp-assurance-title">خرید مطمئن، شروع راحت</h2>
                 <p class="bp-assurance__description">ابزار درست، نیمی از راه است؛ ما انتخاب را ساده می‌کنیم تا با خیال راحت شروع کنی.</p>
             </div>

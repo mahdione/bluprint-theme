@@ -936,9 +936,19 @@
     }
 }
 
+/* One readable column once two cards would squeeze the quantity controls. */
+@media(max-width:560px){
+    .bp-pack-items{
+        grid-template-columns:minmax(0,1fr);
+    }
+
+    .bp-pack-item__media{
+        aspect-ratio:16/10;
+    }
+}
+
 @media(max-width:600px){
-    .bp-pack-hero__title{
-        font-size:clamp(27px,7.4vw,36px);
+    .bp-pack-hero__title{        font-size:clamp(27px,7.4vw,36px);
     }
 
     .bp-pack-hero__buy{

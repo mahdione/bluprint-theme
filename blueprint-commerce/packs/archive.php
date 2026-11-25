@@ -34,7 +34,7 @@ if(is_wp_error($terms))$terms=[];
             'class'=>'bp-pack-archive__breadcrumb',
         ]); ?>
 
-        <p class="bp-pack-archive-hero__eyebrow">PACKS / <?php echo $is_category?'CATEGORY':'ALL'?></p>
+        <p class="bp-pack-archive-hero__eyebrow">پک‌ها / <?php echo $is_category?'دسته‌بندی':'همه'; ?></p>
         <h1 class="bp-pack-archive-hero__title" id="bp-pack-archive-title"><?php echo esc_html($title); ?></h1>
 
         <?php if(trim(wp_strip_all_tags($description))!==''): ?>

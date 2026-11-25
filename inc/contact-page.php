@@ -12,7 +12,7 @@ defined('ABSPATH')||exit;
 
 function bluprint_contact_defaults(){
     return [
-        'eyebrow'=>'C—02 / تماس با بلوپرینت',
+        'eyebrow'=>'',
         'title'=>'بیا روی خط بود.',
         'intro'=>'سؤالی درباره محصولات، سفارش یا پروژه‌ات داری؟ پیامت را بگذار؛ کارشناسان ما با دقت به آن پاسخ می‌دهند. اگر دوست داری سریع‌تر برسی، همین حالا از کانال‌های پشتیبانی استفاده کن.',
         'info_eyebrow'=>'۰۱ / ارتباط مستقیم',
@@ -73,7 +73,12 @@ function bluprint_contact_sanitize($input){
 function bluprint_contact_get_data($post_id=0){
     $post_id=$post_id?absint($post_id):absint(get_queried_object_id());
     $stored=$post_id?get_post_meta($post_id,'_bluprint_contact_page',true):[];
-    return wp_parse_args(is_array($stored)?$stored:[],bluprint_contact_defaults());
+    $data=wp_parse_args(is_array($stored)?$stored:[],bluprint_contact_defaults());
+
+    // Drop the old technical eyebrow from pages saved before it was removed.
+    if(trim((string)$data['eyebrow'])==='C—02 / تماس با بلوپرینت')$data['eyebrow']='';
+
+    return $data;
 }
 
 /**

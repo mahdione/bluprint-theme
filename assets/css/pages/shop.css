@@ -36,6 +36,10 @@
 
 /* Product Grid */
 .bp-archive-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:1fr;align-items:stretch;gap:22px}
+/* Step the grid down as the viewport narrows so cards never get squeezed. */
+@media(max-width:1180px){
+ .bp-archive-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
 .bp-archive-grid .bp-product-card{width:100%;min-width:0;max-width:none;height:100%;min-height:0;flex:none}
 
 /* Filters */
@@ -193,6 +197,20 @@ body.bp-filter-lock{overflow:hidden}
  .bp-archive-grid .bp-product-card__action{gap:5px}
  .bp-archive-grid .bp-button.bp-product-card__view-button{padding-inline:5px;font-size:11px;gap:3px}
  .bp-archive-grid .bp-product-card__cart-form{flex-basis:36px;width:36px}
+}
+
+/* Very small phones: one readable column instead of two squeezed cards. */
+@media(max-width:480px){
+ .bp-archive-grid{grid-template-columns:minmax(0,1fr);gap:14px}
+ .bp-archive-grid .bp-product-card{padding:14px 12px 12px;gap:8px}
+ .bp-archive-grid .bp-product-card__media{height:auto;flex:0 0 auto;aspect-ratio:4/3}
+ .bp-archive-grid .bp-product-card__title{font-size:16px;line-height:1.6}
+ .bp-archive-grid .bp-product-card__category{font-size:12px;line-height:20px}
+ .bp-archive-grid .bp-product-card__description{font-size:12px;line-height:1.7}
+ .bp-archive-grid .bp-product-card__price{font-size:13px;line-height:22px}
+ .bp-archive-grid .bp-button.bp-product-card__view-button{font-size:13px;min-height:42px;padding:6px 10px}
+ .bp-archive-grid .bp-product-card__cart-form{flex:0 0 42px;width:42px}
+ .bp-archive-grid .bp-product-card__cart-button{height:42px}
 }
 
 @media(prefers-reduced-motion:reduce){
