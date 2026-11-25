@@ -1,0 +1,71 @@
+/* Contact page content box in the admin */
+
+.bp-contact-admin__notice{
+    margin:0 0 16px;
+    padding:10px 12px;
+    border-inline-start:3px solid #F4A340;
+    background:#FFF9ED;
+    color:#667085;
+    font-size:12px;
+    line-height:1.7;
+}
+
+.bp-contact-admin__section{
+    margin-top:20px;
+    padding-top:16px;
+    border-top:1px solid #dcdcde;
+}
+
+.bp-contact-admin__section:first-of-type{
+    margin-top:0;
+    padding-top:0;
+    border-top:0;
+}
+
+.bp-contact-admin__section h3{
+    margin:0 0 12px;
+    color:#093FB9;
+    font-size:13px;
+    font-weight:700;
+}
+
+.bp-contact-admin__section h4{
+    margin:16px 0 8px;
+    color:#1d2939;
+    font-size:12px;
+    font-weight:700;
+}
+
+.bp-contact-admin__grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:16px;
+}
+
+.bp-contact-admin__field{
+    margin-bottom:12px;
+}
+
+.bp-contact-admin__field--full{
+    grid-column:1 / -1;
+}
+
+.bp-contact-admin__field label{
+    display:block;
+    margin-bottom:6px;
+    font-weight:600;
+}
+
+.bp-contact-admin__field input[type="text"],
+.bp-contact-admin__field input[type="url"],
+.bp-contact-admin__field input[type="email"],
+.bp-contact-admin__field input[type="tel"],
+.bp-contact-admin__field textarea{
+    width:100%;
+}
+
+@media(max-width:782px){
+    .bp-contact-admin__grid{
+        grid-template-columns:1fr;
+    }
+}

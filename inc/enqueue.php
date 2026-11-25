@@ -1,0 +1,190 @@
+<?php
+defined('ABSPATH')||exit;
+
+function bluprint_enqueue_style($handle,$file,$deps=[]){
+    wp_enqueue_style($handle,get_theme_file_uri($file),$deps,bluprint_asset_version($file));
+}
+
+function bluprint_enqueue_script($handle,$file,$deps=[]){
+    wp_enqueue_script($handle,get_theme_file_uri($file),$deps,bluprint_asset_version($file),['in_footer'=>true,'strategy'=>'defer']);
+}
+
+function bluprint_enqueue_assets(){
+    $base=[
+        'assets/css/base/variables.css',
+        'assets/css/base/reset.css',
+        'assets/css/base/typography.css',
+        'assets/css/base/global.css',
+        'assets/css/base/utilities.css'
+    ];
+
+    $deps=[];
+    foreach($base as $i=>$file){
+        $handle='bluprint-base-'.$i;
+        bluprint_enqueue_style($handle,$file,$deps);
+        $deps=[$handle];
+    }
+
+    foreach(['header','navigation','buttons','search','filter-tabs','breadcrumbs','footer','banner','back-to-top'] as $name){
+        bluprint_enqueue_style("bluprint-{$name}","assets/css/components/{$name}.css",$deps);
+    }
+
+    $woo=function_exists('is_shop');
+    $shop=$woo&&(is_shop()||is_product_taxonomy());
+    $product=function_exists('is_product')&&is_product();
+    $search=is_search();
+    $error=is_404();
+    $pack_archive=function_exists('is_post_type_archive')&&(is_post_type_archive('bp_pack')||is_tax('bp_pack_category'));
+    $has_product_cards=is_front_page()||$shop||$search;
+
+    if(is_front_page()){
+        foreach(['hero','assurance','category-card','category-showcase','carousel','pack-card','pack-showcase','product-card','product-showcase','editorial','blog-section','faq-section'] as $name){
+            bluprint_enqueue_style("bluprint-{$name}","assets/css/components/{$name}.css",$deps);
+        }
+
+        bluprint_enqueue_style('bluprint-home','assets/css/pages/home.css',$deps);
+        bluprint_enqueue_script('bluprint-carousel','assets/js/components/carousel.js');
+        bluprint_enqueue_script('bluprint-pack-showcase','assets/js/components/pack-showcase.js',['bluprint-carousel','bp-cart-api']);
+        bluprint_enqueue_script('bluprint-faq','assets/js/components/faq-section.js');
+    }
+
+    if((is_home()||$shop||$product||$search)&&!is_front_page()){
+        bluprint_enqueue_style('bluprint-product-card','assets/css/components/product-card.css',$deps);
+    }
+
+    if($has_product_cards){
+        bluprint_enqueue_script('bluprint-product-card','assets/js/components/product-card.js',['bp-cart-api']);
+    }
+
+    if(is_front_page()||is_home()||is_archive()||$search||is_singular('post')){
+        bluprint_enqueue_style('bluprint-article-card','assets/css/components/article-card.css',$deps);
+    }
+
+    if($search){
+        bluprint_enqueue_style('bluprint-pack-card','assets/css/components/pack-card.css',$deps);
+        bluprint_enqueue_style('bluprint-page-search','assets/css/components/page-search.css',$deps);
+        bluprint_enqueue_style('bluprint-search-page','assets/css/pages/search.css',$deps);
+        bluprint_enqueue_script('bluprint-pack-showcase','assets/js/components/pack-showcase.js',['bp-cart-api']);
+        bluprint_enqueue_script('bluprint-page-search','assets/js/components/page-search.js');
+        bluprint_enqueue_script('bluprint-search-results','assets/js/components/search-results.js');
+    }
+
+    if($error){
+        bluprint_enqueue_style('bluprint-page-search','assets/css/components/page-search.css',$deps);
+        bluprint_enqueue_style('bluprint-error-page','assets/css/pages/404.css',$deps);
+        bluprint_enqueue_script('bluprint-page-search','assets/js/components/page-search.js');
+        bluprint_enqueue_script('bluprint-error-page','assets/js/components/error-page.js');
+    }
+
+    if($shop){
+        bluprint_enqueue_style('bluprint-shop','assets/css/pages/shop.css',$deps);
+    }
+
+    if($pack_archive){
+        bluprint_enqueue_style('bluprint-shop','assets/css/pages/shop.css',$deps);
+        bluprint_enqueue_style('bluprint-pack-card','assets/css/components/pack-card.css',$deps);
+        bluprint_enqueue_style('bluprint-pack-archive','assets/css/pages/pack-archive.css',$deps);
+        bluprint_enqueue_script('bluprint-archive-filters','assets/js/components/archive/filters.js');
+        bluprint_enqueue_script('bluprint-archive-content','assets/js/components/archive/content-toggle.js');
+        bluprint_enqueue_script('bluprint-pack-showcase','assets/js/components/pack-showcase.js',['bp-cart-api']);
+    }
+
+    if($product){
+        bluprint_enqueue_style('bluprint-single-product','assets/css/pages/single-product.css',$deps);
+        bluprint_enqueue_script('bluprint-single-product','assets/js/components/single-product.js');
+    }
+
+    if(is_home()||is_archive()||is_singular('post')||(function_exists('is_singular')&&is_singular('bp_pack'))){
+        bluprint_enqueue_style('bluprint-blog','assets/css/pages/blog.css',$deps);
+    }
+
+    if(is_singular('post')){
+        bluprint_enqueue_script('bluprint-post-reading','assets/js/components/post-reading.js');
+    }
+
+    if(is_page_template('templates/page-about.php')){
+        bluprint_enqueue_style('bluprint-about','assets/css/pages/about.css',$deps);
+    }
+
+    if(is_page_template('templates/page-contact.php')){
+        bluprint_enqueue_style('bluprint-contact','assets/css/pages/contact.css',$deps);
+        bluprint_enqueue_script('bluprint-contact-form','assets/js/components/contact-form.js');
+    }
+
+    if(function_exists('is_singular')&&is_singular('bp_pack')){
+        bluprint_enqueue_style('bluprint-pack-single','assets/css/pages/pack-single.css',$deps);
+    }
+
+    bluprint_enqueue_script('bluprint-navigation','assets/js/components/navigation.js');
+    bluprint_enqueue_script('bluprint-main','assets/js/main.js');
+    bluprint_enqueue_script('bluprint-back-to-top','assets/js/components/back-to-top.js');
+}
+add_action('wp_enqueue_scripts','bluprint_enqueue_assets');
+
+function bluprint_enqueue_cart_drawer_style(){
+    if(!wp_style_is('bp-cart-drawer','enqueued')&&!wp_style_is('bp-cart-drawer','registered'))return;
+    bluprint_enqueue_style('bluprint-cart-drawer','assets/css/components/cart-drawer.css',['bp-cart-drawer']);
+}
+add_action('wp_enqueue_scripts','bluprint_enqueue_cart_drawer_style',40);
+
+/**
+ * Shared receipt-style item styles for the cart drawer and the cart page.
+ * Loaded after the drawer polish so it owns every item-level surface.
+ */
+function bluprint_enqueue_cart_item_style(){
+    $drawer=wp_style_is('bp-cart-drawer','enqueued')||wp_style_is('bp-cart-drawer','registered');
+    $cart=function_exists('is_cart')&&is_cart();
+
+    if(!$drawer&&!$cart)return;
+
+    $deps=$drawer?['bluprint-cart-drawer']:['bp-cart'];
+    bluprint_enqueue_style('bluprint-cart-items','assets/css/components/cart-items.css',$deps);
+}
+add_action('wp_enqueue_scripts','bluprint_enqueue_cart_item_style',41);
+
+/**
+ * Expose the checkout URL to the cart component so the drawer can offer a
+ * direct checkout action without duplicating plugin markup.
+ */
+function bluprint_cart_checkout_url(){
+    if(!wp_script_is('bp-cart-api','enqueued'))return;
+
+    $checkout=function_exists('wc_get_checkout_url')?wc_get_checkout_url():wc_get_cart_url();
+    wp_add_inline_script(
+        'bp-cart-api',
+        'window.BPCart=window.BPCart||{};window.BPCart.checkoutUrl='.wp_json_encode(esc_url_raw($checkout)).';',
+        'after'
+    );
+}
+add_action('wp_enqueue_scripts','bluprint_cart_checkout_url',35);
+
+/**
+ * Cart item behaviour: the drawer checkout shortcut. Loaded after the commerce
+ * API so the localized config is available.
+ */
+function bluprint_enqueue_cart_item_script(){
+    if(!wp_script_is('bp-cart-api','enqueued'))return;
+    bluprint_enqueue_script('bluprint-cart-items-js','assets/js/components/cart-items.js',['bp-cart-api']);
+}
+add_action('wp_enqueue_scripts','bluprint_enqueue_cart_item_script',42);
+
+/**
+ * Pack single behaviour: live quantities/totals and pack colour accents.
+ * The commerce plugin's basic quantity script is replaced so clicks are not
+ * handled twice; the shared cart API still submits the pack form.
+ */
+function bluprint_enqueue_pack_single_script(){
+    if(!function_exists('is_singular')||!is_singular('bp_pack'))return;
+
+    wp_dequeue_script('bp-pack-cart');
+    bluprint_enqueue_script('bluprint-pack-single','assets/js/components/pack-single.js',['bp-cart-api']);
+
+    if(!function_exists('wc_get_price_decimals'))return;
+
+    wp_localize_script('bluprint-pack-single','BluprintPack',[
+        'currency'=>html_entity_decode(get_woocommerce_currency_symbol(),ENT_QUOTES,'UTF-8'),
+        'priceFormat'=>html_entity_decode(get_woocommerce_price_format(),ENT_QUOTES,'UTF-8'),
+        'decimals'=>wc_get_price_decimals(),
+    ]);
+}
+add_action('wp_enqueue_scripts','bluprint_enqueue_pack_single_script',50);

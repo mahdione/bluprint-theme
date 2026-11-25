@@ -1,0 +1,1 @@
+html{background:var(--color-paper)}body{direction:rtl;background:var(--color-paper);color:var(--color-ink)}.container{width:min(calc(100% - 2 * var(--container-gutter)),var(--container-width));margin-inline:auto}.is-ltr,[dir=ltr]{direction:ltr;unicode-bidi:isolate}::selection{background:var(--color-blue);color:var(--color-paper)}

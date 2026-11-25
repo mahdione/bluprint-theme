@@ -1,0 +1,7 @@
+<?php defined('ABSPATH')||exit; $files=[ 'inc/helpers.php', 'inc/setup.php', 'inc/admin-menu.php', 'inc/enqueue.php', 'inc/hooks.php', 'inc/template-functions.php', 'inc/search.php', 'inc/about-page.php', 'inc/contact-page.php', 'inc/contact-inbox.php', 'inc/term-order/term-order.php', 'inc/category-showcase.php', 'inc/editorial-section.php', 'inc/product-showcase.php', 'inc/banners.php', 'inc/blog-section.php', 'inc/blog-post.php', 'inc/pack-single.php', 'inc/term-content.php', 'inc/theme-updater.php', 'inc/english-numbers.php', 'inc/faq-section.php', 'inc/footer.php', 'inc/woocommerce/functions.php', 'inc/woocommerce/setup.php', 'inc/woocommerce/hooks.php', 'inc/woocommerce/archive-template.php' ]; foreach($files as $file){ $path=get_theme_file_path($file); if(file_exists($path))require_once $path; }
+
+/* Update-safe fallbacks: a partial deployment must not fatal the front end. */
+if(!function_exists('bluprint_english_digits')){ function bluprint_english_digits($value){ return $value; } }
+if(!function_exists('bluprint_get_term_content')){ function bluprint_get_term_content($term_id){ return ''; } }
+if(!function_exists('bluprint_post_content_toc')){ function bluprint_post_content_toc($content){ return ['content'=>$content,'items'=>[]]; } }
+if(!function_exists('bluprint_get_banner_data')){ function bluprint_get_banner_data($id=1){ return ['enabled'=>0]; } }

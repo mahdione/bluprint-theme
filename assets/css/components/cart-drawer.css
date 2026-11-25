@@ -1,0 +1,206 @@
+/*
+ * Theme-level polish for the Blueprint Commerce cart drawer.
+ * The commerce plugin supplies cart structure and actions; this file adds the
+ * theme's visual polish and motion.
+ */
+
+.bp-cart-drawer-overlay{
+    background:rgba(7,24,55,.5);
+    -webkit-backdrop-filter:blur(6px) saturate(1.1);
+    backdrop-filter:blur(6px) saturate(1.1);
+    transition:opacity .35s ease,visibility 0s linear .35s;
+}
+
+.bp-cart-drawer-overlay.is-open{
+    transition:opacity .35s ease,visibility 0s;
+}
+
+.bp-cart-drawer{
+    width:min(88vw,400px);
+    border-right:0;
+    background:
+        linear-gradient(180deg,rgba(9,63,185,.07),transparent 240px),
+        var(--color-paper);
+    box-shadow:24px 0 70px -34px rgba(7,50,148,.65);
+    transition:
+        transform .45s cubic-bezier(.22,1,.36,1),
+        visibility 0s linear .45s;
+}
+
+.bp-cart-drawer.is-open{
+    transition:
+        transform .45s cubic-bezier(.22,1,.36,1),
+        visibility 0s;
+}
+
+.bp-cart-drawer::before{
+    content:"";
+    position:absolute;
+    z-index:2;
+    top:0;
+    right:0;
+    bottom:0;
+    width:4px;
+    background:linear-gradient(180deg,var(--color-orange),var(--color-blue));
+    pointer-events:none;
+}
+
+.bp-cart-drawer__header{
+    position:relative;
+    padding:22px 24px 18px;
+    border-bottom:1px solid var(--color-line);
+    background:linear-gradient(180deg,var(--color-surface),rgba(255,253,248,0));
+}
+
+.bp-cart-drawer__header::after{
+    content:"";
+    position:absolute;
+    right:24px;
+    bottom:-1px;
+    width:72px;
+    height:2px;
+    background:var(--color-orange);
+}
+
+.bp-cart-drawer__header h2{
+    font-size:22px;
+    line-height:1.4;
+    letter-spacing:-.01em;
+}
+
+.bp-cart-drawer__count{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    margin-top:8px;
+    padding:3px 10px;
+    border-radius:var(--radius-pill);
+    background:var(--color-pale);
+    color:var(--color-blue);
+    font-size:11px;
+    font-weight:var(--weight-bold);
+}
+
+.bp-cart-drawer__close{
+    width:42px;
+    height:42px;
+    border-radius:var(--radius-control);
+    font-size:26px;
+    transition:
+        background .2s ease,
+        color .2s ease,
+        transform .38s cubic-bezier(.34,1.56,.64,1);
+}
+
+.bp-cart-drawer__close:hover{
+    background:var(--color-ink);
+    color:var(--color-paper);
+    transform:rotate(90deg);
+}
+
+.bp-cart-drawer__body{
+    padding:20px 24px 32px;
+    scrollbar-width:thin;
+    scrollbar-color:var(--color-line) transparent;
+}
+
+.bp-cart-drawer__body::-webkit-scrollbar{
+    width:6px;
+}
+
+.bp-cart-drawer__body::-webkit-scrollbar-thumb{
+    border-radius:var(--radius-pill);
+    background:var(--color-line);
+}
+
+@keyframes bp-drawer-rise{
+    from{
+        opacity:0;
+        transform:translateY(14px);
+    }
+    to{
+        opacity:1;
+        transform:none;
+    }
+}
+
+.bp-cart-drawer.is-open .bp-cart-drawer__content > *{
+    animation:bp-drawer-rise .5s cubic-bezier(.22,.61,.36,1) both;
+}
+
+.bp-cart-drawer.is-open .bp-cart-drawer__content > *:nth-child(2){
+    animation-delay:.08s;
+}
+
+.bp-cart-drawer.is-open .bp-cart-drawer__content > *:nth-child(3){
+    animation-delay:.16s;
+}
+
+.bp-cart-drawer .bp-cart-invoice__total strong{
+    color:var(--color-blue);
+}
+
+.bp-cart-drawer .bp-cart__checkout{
+    position:relative;
+    overflow:hidden;
+}
+
+.bp-cart-drawer .bp-cart__checkout::after{
+    content:"";
+    position:absolute;
+    top:-25%;
+    bottom:-25%;
+    width:38%;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);
+    transform:translateX(-180%) rotate(8deg);
+    transition:transform .65s ease;
+    pointer-events:none;
+}
+
+.bp-cart-drawer .bp-cart__checkout:hover::after{
+    transform:translateX(320%) rotate(8deg);
+}
+
+.bp-cart-drawer__view{
+    transition:color .2s ease,letter-spacing .25s ease;
+}
+
+.bp-cart-drawer__view:hover{
+    color:var(--color-orange);
+    letter-spacing:.01em;
+}
+
+@media(max-width:600px){
+    .bp-cart-drawer__header{
+        padding:18px 20px 14px;
+    }
+
+    .bp-cart-drawer__body{
+        padding:16px 20px 28px;
+    }
+}
+
+/* Keep the drawer at the same width as the mobile navigation drawer. */
+@media(max-width:480px){
+    .bp-cart-drawer{
+        width:min(92vw,360px);
+    }
+}
+
+@media(prefers-reduced-motion:reduce){
+    .bp-cart-drawer,
+    .bp-cart-drawer-overlay,
+    .bp-cart-drawer__close,
+    .bp-cart-drawer .bp-cart-pack,
+    .bp-cart-drawer .bp-cart-single,
+    .bp-cart-drawer .bp-cart-item,
+    .bp-cart-drawer .bp-cart__checkout::after,
+    .bp-cart-drawer__view{
+        transition:none!important;
+        animation:none!important;
+    }
+
+    .bp-cart-drawer.is-open .bp-cart-drawer__content > *{
+        animation:none!important;
+    }
+}

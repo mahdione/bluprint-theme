@@ -1,0 +1,1 @@
+<?php defined('ABSPATH')||exit; function bluprint_asset_version($file){ $path=get_theme_file_path($file); return file_exists($path)?(string)filemtime($path):wp_get_theme()->get('Version'); }
