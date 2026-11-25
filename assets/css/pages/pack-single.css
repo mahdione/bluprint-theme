@@ -407,9 +407,9 @@
     padding:2px 8px;
     background:#B42318;
     color:#fff;
-    font-size:var(--font-size-technical-small);
+    font-size:var(--font-size-technical);
     font-weight:var(--weight-black);
-    letter-spacing:var(--tracking-technical-small);
+    letter-spacing:.2px;
     line-height:1.8;
 }
 
