@@ -3,7 +3,7 @@ Contributors: bluprint
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.2.2
+Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,6 +31,14 @@ Custom WooCommerce theme for the Bluprint storefront.
 5. WordPress checks the newest GitHub tag on the Themes screen and in Bluprint → به‌روزرسانی قالب. If a Release contains bluprint-theme.zip it is preferred; otherwise the tag archive is used.
 
 == Changelog ==
+= 1.3.0 =
+* Added theme-level SEO fallbacks: indexability, meta descriptions, Open Graph/Twitter tags, JSON-LD, breadcrumbs and sitemap enablement.
+* Fixed the shop and product-category 500 error when WooCommerce helper files are not loaded.
+* Added central self-healing includes for partial or stale theme deployments.
+* Improved accessibility: color contrast, category link names and minimum touch targets.
+* Bundled core CSS, preloaded the local font and skipped unused WooCommerce/block assets on custom pages.
+* Rebuilt the installation package.
+
 = 1.2.2 =
 * Hardened front-page sections, the footer, single posts and pack pages against partial or renamed theme folders.
 * Added self-loading guards for section helpers so a missing include cannot fatal the site.

@@ -4,6 +4,7 @@
 .bp-breadcrumb .rank-math-breadcrumb a{color:var(--bp-breadcrumb-link-color);font:inherit;text-decoration:none;transition:color var(--transition-fast)}
 .bp-breadcrumb .rank-math-breadcrumb a:hover{color:var(--color-blue);text-decoration:underline;text-underline-offset:3px}
 .bp-breadcrumb .rank-math-breadcrumb .last{color:var(--bp-breadcrumb-current-color)}
+.bp-breadcrumb .rank-math-breadcrumb .separator{color:var(--color-line)}
 .bp-breadcrumb--compact{--bp-breadcrumb-font-size:12px;--bp-breadcrumb-gap:6px}
 .bp-breadcrumb--large{--bp-breadcrumb-font-size:16px;--bp-breadcrumb-gap:10px}
 .bp-breadcrumb--muted{--bp-breadcrumb-color:var(--color-muted);--bp-breadcrumb-link-color:var(--color-muted)}
