@@ -413,7 +413,7 @@
     line-height:1.8;
 }
 
-/* A removed item keeps its image in place but marks it with a large X. */
+/* A removed item keeps its image in place but marks it with a neutral X. */
 .bp-pack-item__media::after{
     content:"×";
     position:absolute;
@@ -421,7 +421,7 @@
     display:grid;
     place-items:center;
     background:color-mix(in srgb,var(--color-surface) 55%,transparent);
-    color:#B42318;
+    color:var(--color-muted);
     font-size:clamp(72px,10vw,120px);
     font-weight:var(--weight-regular);
     line-height:1;
