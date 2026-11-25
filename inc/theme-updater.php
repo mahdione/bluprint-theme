@@ -233,6 +233,9 @@ function bluprint_theme_updater_get_remote($force=false){
 function bluprint_theme_updater_check_update($transient){
     if(!is_object($transient))return $transient;
 
+    // Avoid GitHub API latency on ordinary front-end requests.
+    if(!is_admin()&&!wp_doing_cron())return $transient;
+
     $slug=get_template();
     $current_version=isset($transient->checked[$slug])
         ?(string)$transient->checked[$slug]

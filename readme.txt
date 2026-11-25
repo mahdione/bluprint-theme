@@ -3,7 +3,7 @@ Contributors: bluprint
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -26,13 +26,18 @@ Custom WooCommerce theme for the Bluprint storefront.
 2. Open Bluprint → به‌روزرسانی قالب and enter the repository as owner/repository.
 3. For a public repository the token is optional. For a private repository, add a fine-grained token with repository read access, or define BLUPRINT_THEME_GITHUB_TOKEN and BLUPRINT_THEME_GITHUB_REPO in wp-config.php.
 4. When a new version is ready, update the Version header and push a matching tag, for example:
-   git tag v1.2.0
+   git tag v1.2.1
    git push origin main --tags
-5. The GitHub Actions workflow builds bluprint-theme.zip and attaches it to the Release. WordPress will then show the update on the Themes screen or in Bluprint → به‌روزرسانی قالب.
+5. WordPress checks the newest GitHub tag on the Themes screen and in Bluprint → به‌روزرسانی قالب. If a Release contains bluprint-theme.zip it is preferred; otherwise the tag archive is used.
 
 == Changelog ==
+= 1.2.1 =
+* Switched automatic updates to the newest GitHub tag, with an optional release asset and archive fallback.
+* Prevented GitHub API checks on ordinary front-end requests.
+* Added ZIP folder normalization for GitHub tag archives.
+
 = 1.2.0 =
-* Added GitHub Releases-based automatic theme updates.
+* Added GitHub tag/release-based automatic theme updates.
 * Added the "به‌روزرسانی قالب" settings screen under the Bluprint menu.
 * Added native WordPress theme update integration and version details.
 * Added .github/workflows/release.yml to publish an installable ZIP on version tags.
