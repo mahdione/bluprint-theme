@@ -1,6 +1,14 @@
 <?php
 defined('ABSPATH')||exit;
 
+if(!function_exists('bluprint_post_content_toc')){
+    $bluprint_inc=get_theme_file_path('inc/blog-post.php');
+    if(file_exists($bluprint_inc))require_once $bluprint_inc;
+}
+if(!function_exists('bluprint_post_content_toc')){
+    function bluprint_post_content_toc($content){ return ['content'=>$content,'items'=>[]]; }
+}
+
 $show_cta=false;
 get_header();
 ?>

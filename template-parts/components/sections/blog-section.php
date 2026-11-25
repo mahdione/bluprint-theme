@@ -1,1 +1,10 @@
-<?php defined('ABSPATH')||exit; $data=bluprint_get_blog_data(); if(empty($data['enabled']))return; $posts=bluprint_get_blog_posts(3); if(!$posts)return; ?> <section class="bp-blog-section" aria-labelledby="bp-blog-title"> <div class="bp-blog-section__container"> <?php if(!empty($data['title'])): ?> <h2 class="bp-blog-section__title" id="bp-blog-title"><?php echo esc_html($data['title']); ?></h2> <?php endif; ?> <div class="bp-blog-section__grid"> <?php foreach($posts as $post): ?> <?php get_template_part('template-parts/components/cards/article-card',null,['post_id'=>$post->ID]); ?> <?php endforeach; ?> </div> </div> </section>
+<?php
+defined('ABSPATH')||exit;
+
+if(!function_exists('bluprint_get_blog_data')){
+    $bluprint_inc=get_theme_file_path('inc/blog-section.php');
+    if(file_exists($bluprint_inc))require_once $bluprint_inc;
+}
+if(!function_exists('bluprint_get_blog_data'))return;
+
+$data=bluprint_get_blog_data(); if(empty($data['enabled']))return; $posts=bluprint_get_blog_posts(3); if(!$posts)return; ?> <section class="bp-blog-section" aria-labelledby="bp-blog-title"> <div class="bp-blog-section__container"> <?php if(!empty($data['title'])): ?> <h2 class="bp-blog-section__title" id="bp-blog-title"><?php echo esc_html($data['title']); ?></h2> <?php endif; ?> <div class="bp-blog-section__grid"> <?php foreach($posts as $post): ?> <?php get_template_part('template-parts/components/cards/article-card',null,['post_id'=>$post->ID]); ?> <?php endforeach; ?> </div> </div> </section>

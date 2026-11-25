@@ -3,7 +3,7 @@ Contributors: bluprint
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.2.1
+Stable tag: 1.2.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,6 +31,12 @@ Custom WooCommerce theme for the Bluprint storefront.
 5. WordPress checks the newest GitHub tag on the Themes screen and in Bluprint → به‌روزرسانی قالب. If a Release contains bluprint-theme.zip it is preferred; otherwise the tag archive is used.
 
 == Changelog ==
+= 1.2.2 =
+* Hardened front-page sections, the footer, single posts and pack pages against partial or renamed theme folders.
+* Added self-loading guards for section helpers so a missing include cannot fatal the site.
+* Added a front-page fallback loader for top-level inc files.
+* Rebuilt the installation package.
+
 = 1.2.1 =
 * Switched automatic updates to the newest GitHub tag, with an optional release asset and archive fallback.
 * Prevented GitHub API checks on ordinary front-end requests.

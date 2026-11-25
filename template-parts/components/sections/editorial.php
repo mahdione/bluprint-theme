@@ -1,6 +1,12 @@
 <?php
 defined('ABSPATH')||exit;
 
+if(!function_exists('bluprint_get_editorial_data')){
+    $bluprint_inc=get_theme_file_path('inc/editorial-section.php');
+    if(file_exists($bluprint_inc))require_once $bluprint_inc;
+}
+if(!function_exists('bluprint_get_editorial_data'))return;
+
 $data=bluprint_get_editorial_data();
 if(empty($data['enabled']))return;
 

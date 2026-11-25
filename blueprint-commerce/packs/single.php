@@ -1,6 +1,14 @@
 <?php
 defined('ABSPATH')||exit;
 
+if(!function_exists('bluprint_english_digits')){
+    $bluprint_inc=get_theme_file_path('inc/english-numbers.php');
+    if(file_exists($bluprint_inc))require_once $bluprint_inc;
+}
+if(!function_exists('bluprint_english_digits')){
+    function bluprint_english_digits($value){ return $value; }
+}
+
 get_header();
 
 while(have_posts()):
