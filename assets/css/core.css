@@ -786,6 +786,207 @@ body.menu-open{
 @media(max-width:480px){.bp-button{min-width:0}}
 @media(prefers-reduced-motion:reduce){.bp-button{transition:none}}
 
+/* ===== assets/css/components/woocommerce-buttons.css ===== */
+/*
+ * Theme skin for WooCommerce-generated buttons (.button and .button.alt).
+ *
+ * WooCommerce ships a purple (#7f54b3) default button palette. The theme only
+ * styles its own .bp-button components and a few page-specific buttons, so any
+ * WooCommerce button (notices, cart, checkout, coupon form) could still fall
+ * back to purple on hover, focus, active or disabled. These rules map every
+ * state to the Bluprint palette while keeping WooCommerce's markup untouched.
+ */
+
+.woocommerce a.button,
+.woocommerce button.button,
+.woocommerce input.button,
+.woocommerce #respond input#submit,
+.woocommerce-message .button,
+.woocommerce-info .button,
+.woocommerce-error .button{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:var(--button-gap);
+    min-height:var(--control-height);
+    padding:var(--space-2) var(--space-4);
+    border:1px solid var(--color-blue);
+    border-radius:var(--radius-control);
+    background-color:var(--color-surface);
+    background-image:none;
+    color:var(--color-ink);
+    font-family:var(--font-primary);
+    font-size:var(--font-size-ui);
+    font-weight:var(--weight-bold);
+    line-height:var(--line-ui);
+    text-align:center;
+    text-decoration:none;
+    text-shadow:none;
+    box-shadow:none;
+    cursor:pointer;
+    transition:background-color var(--transition-fast),border-color var(--transition-fast),color var(--transition-fast);
+}
+
+.woocommerce a.button:hover:not(:disabled):not(.disabled),
+.woocommerce button.button:hover:not(:disabled):not(.disabled),
+.woocommerce input.button:hover:not(:disabled):not(.disabled),
+.woocommerce #respond input#submit:hover:not(:disabled):not(.disabled),
+.woocommerce-message .button:hover:not(:disabled):not(.disabled),
+.woocommerce-info .button:hover:not(:disabled):not(.disabled),
+.woocommerce-error .button:hover:not(:disabled):not(.disabled){
+    border-color:var(--color-blue);
+    background-color:var(--color-pale);
+    background-image:none;
+    color:var(--color-ink);
+}
+
+.woocommerce a.button:focus,
+.woocommerce button.button:focus,
+.woocommerce input.button:focus,
+.woocommerce #respond input#submit:focus,
+.woocommerce-message .button:focus,
+.woocommerce-info .button:focus,
+.woocommerce-error .button:focus{
+    background-color:var(--color-surface);
+    color:var(--color-ink);
+}
+
+.woocommerce a.button:focus-visible,
+.woocommerce button.button:focus-visible,
+.woocommerce input.button:focus-visible,
+.woocommerce #respond input#submit:focus-visible,
+.woocommerce-message .button:focus-visible,
+.woocommerce-info .button:focus-visible,
+.woocommerce-error .button:focus-visible{
+    outline:var(--focus-width) solid var(--color-blue);
+    outline-offset:var(--focus-offset);
+}
+
+.woocommerce a.button:active:not(:disabled),
+.woocommerce button.button:active:not(:disabled),
+.woocommerce input.button:active:not(:disabled),
+.woocommerce #respond input#submit:active:not(:disabled),
+.woocommerce-message .button:active:not(:disabled),
+.woocommerce-info .button:active:not(:disabled),
+.woocommerce-error .button:active:not(:disabled){
+    border-color:var(--color-blue);
+    background-color:var(--color-pale);
+    background-image:none;
+    color:var(--color-ink);
+}
+
+.woocommerce a.button.disabled,
+.woocommerce a.button:disabled,
+.woocommerce button.button.disabled,
+.woocommerce button.button:disabled,
+.woocommerce input.button.disabled,
+.woocommerce input.button:disabled,
+.woocommerce #respond input#submit.disabled,
+.woocommerce #respond input#submit:disabled,
+.woocommerce-message .button.disabled,
+.woocommerce-message .button:disabled,
+.woocommerce-info .button.disabled,
+.woocommerce-info .button:disabled,
+.woocommerce-error .button.disabled,
+.woocommerce-error .button:disabled{
+    border-color:var(--color-line);
+    background-color:var(--color-pale);
+    background-image:none;
+    color:var(--color-muted);
+    box-shadow:none;
+    opacity:1;
+    cursor:not-allowed;
+}
+
+/* Primary (alt) buttons stay orange in every state, including focus/active. */
+.woocommerce a.button.alt,
+.woocommerce button.button.alt,
+.woocommerce input.button.alt,
+.woocommerce #respond input#submit.alt,
+.woocommerce-message .button.alt,
+.woocommerce-info .button.alt,
+.woocommerce-error .button.alt{
+    border-color:var(--color-on-orange);
+    background-color:var(--color-orange);
+    background-image:none;
+    color:var(--color-on-orange);
+}
+
+.woocommerce a.button.alt:hover:not(:disabled):not(.disabled),
+.woocommerce button.button.alt:hover:not(:disabled):not(.disabled),
+.woocommerce input.button.alt:hover:not(:disabled):not(.disabled),
+.woocommerce #respond input#submit.alt:hover:not(:disabled):not(.disabled),
+.woocommerce-message .button.alt:hover:not(:disabled):not(.disabled),
+.woocommerce-info .button.alt:hover:not(:disabled):not(.disabled),
+.woocommerce-error .button.alt:hover:not(:disabled):not(.disabled){
+    border-color:var(--color-on-orange);
+    background-color:var(--color-action-hover);
+    background-image:none;
+    color:var(--color-on-orange);
+}
+
+.woocommerce a.button.alt:focus,
+.woocommerce button.button.alt:focus,
+.woocommerce input.button.alt:focus,
+.woocommerce #respond input#submit.alt:focus,
+.woocommerce-message .button.alt:focus,
+.woocommerce-info .button.alt:focus,
+.woocommerce-error .button.alt:focus{
+    border-color:var(--color-on-orange);
+    background-color:var(--color-orange);
+    background-image:none;
+    color:var(--color-on-orange);
+}
+
+.woocommerce a.button.alt:active:not(:disabled),
+.woocommerce button.button.alt:active:not(:disabled),
+.woocommerce input.button.alt:active:not(:disabled),
+.woocommerce #respond input#submit.alt:active:not(:disabled),
+.woocommerce-message .button.alt:active:not(:disabled),
+.woocommerce-info .button.alt:active:not(:disabled),
+.woocommerce-error .button.alt:active:not(:disabled){
+    border-color:var(--color-on-orange);
+    background-color:var(--color-action-pressed);
+    background-image:none;
+    color:var(--color-on-orange);
+}
+
+.woocommerce a.button.alt.disabled,
+.woocommerce a.button.alt:disabled,
+.woocommerce button.button.alt.disabled,
+.woocommerce button.button.alt:disabled,
+.woocommerce input.button.alt.disabled,
+.woocommerce input.button.alt:disabled,
+.woocommerce #respond input#submit.alt.disabled,
+.woocommerce #respond input#submit.alt:disabled,
+.woocommerce-message .button.alt.disabled,
+.woocommerce-message .button.alt:disabled,
+.woocommerce-info .button.alt.disabled,
+.woocommerce-info .button.alt:disabled,
+.woocommerce-error .button.alt.disabled,
+.woocommerce-error .button.alt:disabled{
+    border-color:var(--color-line);
+    background-color:var(--color-pale);
+    background-image:none;
+    color:var(--color-muted);
+    box-shadow:none;
+    opacity:1;
+    cursor:not-allowed;
+}
+
+@media(prefers-reduced-motion:reduce){
+    .woocommerce a.button,
+    .woocommerce button.button,
+    .woocommerce input.button,
+    .woocommerce #respond input#submit,
+    .woocommerce-message .button,
+    .woocommerce-info .button,
+    .woocommerce-error .button{
+        transition:none;
+    }
+}
+
+
 /* ===== assets/css/components/search.css ===== */
 .bp-search{display:flex;align-items:center;width:min(100%,var(--search-width));height:var(--search-height);padding:13px var(--space-4);background:var(--color-surface);border:var(--border-width) solid var(--color-ink);border-radius:var(--radius-control);transition:border-color var(--transition-fast),border-width var(--transition-fast)}.bp-search:focus-within{border:2px solid var(--color-blue)}.bp-search input{width:100%;min-width:0;height:100%;padding:0;border:var(--border-width-none);border-radius:0;outline:0;background:0 0;color:var(--color-ink);font-family:var(--font-primary);font-size:var(--font-size-body);font-weight:var(--weight-regular);line-height:normal}.bp-search input::placeholder{color:var(--color-ink);opacity:1}.bp-search input:disabled{cursor:not-allowed}.bp-search:has(input:disabled){opacity:.4}.bp-search input::-webkit-search-cancel-button{cursor:pointer}
 

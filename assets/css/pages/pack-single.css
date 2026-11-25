@@ -168,7 +168,7 @@
 
 .bp-pack-hero__meta-item strong{
     color:var(--color-ink);
-    font-size:15px;
+    font-size:16px;
     font-weight:var(--weight-black);
     line-height:1.7;
     overflow-wrap:anywhere;
@@ -773,6 +773,10 @@
 @media(max-width:700px){
     .bp-pack-hero__meta{
         grid-template-columns:repeat(2,minmax(0,1fr));
+    }
+
+    .bp-pack-hero__meta-item:last-child:nth-child(odd){
+        grid-column:1/-1;
     }
 
     .bp-pack-items{

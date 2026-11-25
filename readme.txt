@@ -3,7 +3,7 @@ Contributors: bluprint
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.2
+Stable tag: 1.3.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,6 +31,11 @@ Custom WooCommerce theme for the Bluprint storefront.
 5. WordPress checks the newest GitHub tag on the Themes screen and in Bluprint → به‌روزرسانی قالب. If a Release contains bluprint-theme.zip it is preferred; otherwise the tag archive is used.
 
 == Changelog ==
+= 1.3.3 =
+* Skinned every WooCommerce-generated button so no default purple appears in hover, focus, active, disabled or notice states.
+* Redesigned the pack metadata into bordered, high-contrast boxes with bold values and responsive columns.
+* Rebuilt the core stylesheet bundle and the installation package.
+
 = 1.3.2 =
 * Fixed the product add-to-cart button reverting to WooCommerce purple on focus/active.
 * Redesigned pack metadata into clear bordered boxes with stronger value weights.

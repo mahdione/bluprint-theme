@@ -35,7 +35,7 @@ function bluprint_enqueue_assets(){
             $deps=[$handle];
         }
 
-        foreach(['header','navigation','buttons','search','filter-tabs','breadcrumbs','footer','banner','back-to-top'] as $name){
+        foreach(['header','navigation','buttons','woocommerce-buttons','search','filter-tabs','breadcrumbs','footer','banner','back-to-top'] as $name){
             bluprint_enqueue_style("bluprint-{$name}","assets/css/components/{$name}.css",$deps);
         }
     }

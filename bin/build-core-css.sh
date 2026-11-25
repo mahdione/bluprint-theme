@@ -15,6 +15,7 @@ files=(
     assets/css/components/header.css
     assets/css/components/navigation.css
     assets/css/components/buttons.css
+    assets/css/components/woocommerce-buttons.css
     assets/css/components/search.css
     assets/css/components/filter-tabs.css
     assets/css/components/breadcrumbs.css
