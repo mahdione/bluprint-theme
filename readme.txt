@@ -3,7 +3,7 @@ Contributors: bluprint
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.6
+Stable tag: 1.3.7
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,6 +31,12 @@ Custom WooCommerce theme for the Bluprint storefront.
 5. WordPress checks the newest GitHub tag on the Themes screen and in Bluprint → به‌روزرسانی قالب. If a Release contains bluprint-theme.zip it is preferred; otherwise the tag archive is used.
 
 == Changelog ==
+= 1.3.7 =
+* Simplified product-card prices: variable products show only the starting price, prefixed with «از».
+* Removed the long crossed-out range from card prices so nothing is clipped or unreadable.
+* Added a compact discount badge in the top-left corner of discounted product cards, showing the exact or maximum saving.
+* Rebuilt the installation package.
+
 = 1.3.6 =
 * Removed decorative English eyebrows from the home hero, assurance and pack showcase sections.
 * Replaced the About page eyebrow with «درباره ما» and removed numbering from the story and values headings.
