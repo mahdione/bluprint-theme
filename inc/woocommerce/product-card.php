@@ -62,8 +62,10 @@ function bluprint_product_card_price($product){
     if($product->get_price()!==''){
         $result['html']=wc_price($display_price);
     }else{
-        // Grouped, external or otherwise unpriced products keep their own HTML.
+        // Grouped, external or otherwise unpriced products keep their own HTML,
+        // but never leak WooCommerce's visually hidden price explanations.
         $fallback=$product->get_price_html();
+        $fallback=preg_replace('#<span class="screen-reader-text">.*?</span>#su','',$fallback);
         if($fallback!=='')$result['html']=$fallback;
     }
 

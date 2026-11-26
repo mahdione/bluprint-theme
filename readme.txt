@@ -3,7 +3,7 @@ Contributors: bluprint
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.7
+Stable tag: 1.3.8
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,6 +31,11 @@ Custom WooCommerce theme for the Bluprint storefront.
 5. WordPress checks the newest GitHub tag on the Themes screen and in Bluprint → به‌روزرسانی قالب. If a Release contains bluprint-theme.zip it is preferred; otherwise the tag archive is used.
 
 == Changelog ==
+= 1.3.8 =
+* Kept WooCommerce's screen-reader price text visually hidden even when WooCommerce styles are skipped on a page.
+* Hardened the compact card price fallback so hidden sale descriptions can never leak into the card.
+* Rebuilt the core stylesheet bundle.
+
 = 1.3.7 =
 * Simplified product-card prices: variable products show only the starting price, prefixed with «از».
 * Removed the long crossed-out range from card prices so nothing is clipped or unreadable.
