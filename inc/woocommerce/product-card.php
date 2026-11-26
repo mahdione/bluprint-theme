@@ -28,20 +28,24 @@ function bluprint_product_card_price($product){
 
         $min=(float)current($prices['price']);
         $max=(float)end($prices['price']);
-        $discount=0;
+        $max_discount=0;
+        $min_discount=null;
 
         foreach($prices['price'] as $variation_id=>$price){
             $price=(float)$price;
             $regular=(float)($prices['regular_price'][$variation_id]??0);
+            $percent=0;
 
-            if($regular<=0||$price<=0||$price>=$regular)continue;
+            if($regular>0&&$price>0&&$price<$regular){
+                $percent=(int)round((1-($price/$regular))*100);
+            }
 
-            $percent=(int)round((1-($price/$regular))*100);
-            if($percent>$discount)$discount=$percent;
+            if($min_discount===null||$percent<$min_discount)$min_discount=$percent;
+            if($percent>$max_discount)$max_discount=$percent;
         }
 
-        $result['discount']=min(99,$discount);
-        $result['up_to']=$discount>0;
+        $result['discount']=min(99,$max_discount);
+        $result['up_to']=$max_discount>0&&$min_discount!==null&&$min_discount<$max_discount;
         $result['html']=($min!==$max?'از ':'').wc_price($min);
 
         return $result;
