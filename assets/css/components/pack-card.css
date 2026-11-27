@@ -1,7 +1,7 @@
 .bp-pack-card{
     --bp-pack-color:#F4A340;
     --bp-pack-contrast:#073294;
-    --bp-pack-soft:color-mix(in srgb,var(--bp-pack-color) 16%,var(--color-surface));
+    --bp-pack-soft:color-mix(in srgb,var(--bp-pack-color) 8%,var(--color-surface));
     --bp-pack-line:color-mix(in srgb,var(--bp-pack-color) 34%,var(--color-line));
     --bp-pack-shadow:color-mix(in srgb,var(--bp-pack-color) 70%,var(--color-ink));
     position:relative;
@@ -71,9 +71,9 @@
     min-height:30px;
     max-width:100%;
     padding:3px 10px;
-    border:1px solid color-mix(in srgb,var(--bp-pack-color) 58%,var(--color-ink));
-    background:var(--bp-pack-color);
-    color:var(--bp-pack-contrast);
+    border:1px solid var(--color-on-orange);
+    background:var(--color-orange);
+    color:var(--color-on-orange);
     font-size:var(--font-size-caption);
     font-weight:var(--weight-bold);
     line-height:1.7;
@@ -139,17 +139,20 @@
     border-color:var(--bp-pack-contrast);
     background:var(--bp-pack-color);
     color:var(--bp-pack-contrast);
+    box-shadow:var(--button-shadow-x) var(--button-shadow-y) var(--button-shadow-blur) var(--bp-pack-shadow);
 }
 
 .bp-button.bp-pack-card__button:hover:not(:disabled){
     border-color:var(--bp-pack-contrast);
     background:color-mix(in srgb,var(--bp-pack-color) 92%,var(--color-ink));
     color:var(--bp-pack-contrast);
+    box-shadow:var(--button-shadow-hover-x) var(--button-shadow-hover-y) var(--button-shadow-blur) var(--bp-pack-shadow);
 }
 
 .bp-button.bp-pack-card__button:active:not(:disabled){
     background:color-mix(in srgb,var(--bp-pack-color) 88%,var(--color-ink));
     color:var(--bp-pack-contrast);
+    box-shadow:none;
 }
 
 .bp-button.bp-pack-card__button:focus-visible{
@@ -183,7 +186,7 @@
     background:var(--color-surface);
     color:var(--color-ink);
     cursor:pointer;
-    box-shadow:2px 2px 0 color-mix(in srgb,var(--bp-pack-color) 50%,var(--color-ink));
+    box-shadow:2px 2px 0 var(--bp-pack-shadow);
     transition:background var(--transition-fast),color var(--transition-fast),border-color var(--transition-fast),transform var(--transition-fast),box-shadow var(--transition-fast);
 }
 
@@ -191,7 +194,7 @@
     background:color-mix(in srgb,var(--bp-pack-color) 14%,var(--color-surface));
     border-color:var(--bp-pack-color);
     transform:translate(1px,1px);
-    box-shadow:1px 1px 0 color-mix(in srgb,var(--bp-pack-color) 50%,var(--color-ink));
+    box-shadow:1px 1px 0 var(--bp-pack-shadow);
 }
 
 .bp-pack-card__cart-button:active:not(:disabled){

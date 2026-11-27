@@ -34,8 +34,9 @@ Custom WooCommerce theme for the Bluprint storefront.
 = 1.3.9 =
 * Removed the counter and price strip from the top of pack cards.
 * Moved the pack total price into the category row, right-aligned and clearly readable.
-* Applied each pack's own colour to the card tint, category chip, visit button and hover shadow.
-* Added WCAG-based contrast selection for pack button and chip text, including white icons on dark colours.
+* Softened the card tint and applied each pack's own colour to the visit button, button shadow and hover shadow.
+* Kept the category chip a single consistent brand colour across every pack.
+* Added WCAG-based contrast selection for pack button text, including white icons on dark colours.
 * Raised description contrast on tinted card backgrounds.
 * Rebuilt the installation package.
 
