@@ -115,6 +115,7 @@ function bluprint_search_pack_args($post){
         'button_url'=>get_permalink($post),
         'pack_id'=>$post->ID,
         'pack_items'=>$pack_items,
+        'color'=>get_post_meta($post->ID,'_bp_pack_color',true),
     ];
 }
 

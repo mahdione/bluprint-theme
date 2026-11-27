@@ -3,7 +3,7 @@ Contributors: bluprint
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.8
+Stable tag: 1.3.9
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,6 +31,14 @@ Custom WooCommerce theme for the Bluprint storefront.
 5. WordPress checks the newest GitHub tag on the Themes screen and in Bluprint → به‌روزرسانی قالب. If a Release contains bluprint-theme.zip it is preferred; otherwise the tag archive is used.
 
 == Changelog ==
+= 1.3.9 =
+* Removed the counter and price strip from the top of pack cards.
+* Moved the pack total price into the category row, right-aligned and clearly readable.
+* Applied each pack's own colour to the card tint, category chip, visit button and hover shadow.
+* Added WCAG-based contrast selection for pack button and chip text, including white icons on dark colours.
+* Raised description contrast on tinted card backgrounds.
+* Rebuilt the installation package.
+
 = 1.3.8 =
 * Kept WooCommerce's screen-reader price text visually hidden even when WooCommerce styles are skipped on a page.
 * Hardened the compact card price fallback so hidden sale descriptions can never leak into the card.

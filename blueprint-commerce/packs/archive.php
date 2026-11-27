@@ -87,6 +87,7 @@ if(is_wp_error($terms))$terms=[];
                             'button_url'=>get_permalink($pack_id),
                             'pack_id'=>$pack_id,
                             'pack_items'=>$pack_items,
+                            'color'=>get_post_meta($pack_id,'_bp_pack_color',true),
                         ]); ?>
                     <?php endwhile; ?>
                 </div>
