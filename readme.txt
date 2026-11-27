@@ -3,7 +3,7 @@ Contributors: bluprint
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.9
+Stable tag: 1.3.10
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,6 +31,11 @@ Custom WooCommerce theme for the Bluprint storefront.
 5. WordPress checks the newest GitHub tag on the Themes screen and in Bluprint → به‌روزرسانی قالب. If a Release contains bluprint-theme.zip it is preferred; otherwise the tag archive is used.
 
 == Changelog ==
+= 1.3.10 =
+* The eNamad footer badge now prints the exact snippet entered in settings, without markup rewriting, lazy-loading or dimension changes.
+* Removed the fixed badge container so the provider's own markup and scripts control the badge size.
+* Rebuilt the core stylesheet bundle.
+
 = 1.3.9 =
 * Removed the counter and price strip from the top of pack cards.
 * Moved the pack total price into the category row, right-aligned and clearly readable.

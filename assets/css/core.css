@@ -1191,24 +1191,6 @@ body.menu-open{
     justify-content:flex-start;
 }
 
-.site-footer__enamad a{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    width:96px;
-    height:96px;
-    padding:6px;
-    border:1px solid rgba(250,248,240,.5);
-    background:var(--color-paper);
-}
-
-.site-footer__enamad img{
-    display:block;
-    width:100%;
-    height:100%;
-    object-fit:contain;
-}
-
 .site-footer__enamad a:focus-visible{
     outline:var(--focus-width) solid var(--color-orange);
     outline-offset:var(--focus-offset);

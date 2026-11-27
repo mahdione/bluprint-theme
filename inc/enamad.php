@@ -2,11 +2,11 @@
 defined('ABSPATH')||exit;
 
 /**
- * Trust badges (eNamad) settings and footer output.
+ * eNamad trust badge settings and footer output.
  *
- * The badge is a simple link + image. Only those tags are kept when saving, and
- * the image is rendered with lazy loading and fixed dimensions so the external
- * request never blocks rendering or shifts the footer.
+ * The badge is supplied by the eNamad panel as a complete HTML snippet. The
+ * snippet is printed exactly as entered (only administrators can edit it), so
+ * the provider's own markup and scripts keep working without modification.
  */
 
 function bluprint_enamad_defaults(){
@@ -22,97 +22,19 @@ function bluprint_enamad_settings(){
     return wp_parse_args(is_array($stored)?$stored:[],bluprint_enamad_defaults());
 }
 
-function bluprint_enamad_allowed_html(){
-    return [
-        'a'=>[
-            'href'=>true,
-            'target'=>true,
-            'rel'=>true,
-            'referrerpolicy'=>true,
-            'title'=>true,
-            'aria-label'=>true,
-            'class'=>true,
-        ],
-        'img'=>[
-            'src'=>true,
-            'alt'=>true,
-            'width'=>true,
-            'height'=>true,
-            'loading'=>true,
-            'decoding'=>true,
-            'fetchpriority'=>true,
-            'referrerpolicy'=>true,
-            'class'=>true,
-        ],
-    ];
-}
-
 function bluprint_enamad_sanitize($input){
     $input=is_array($input)?$input:[];
-    $code=trim((string)($input['code']??''));
+    $code=isset($input['code'])?(string)wp_unslash($input['code']):'';
 
-    // Drop script/style blocks completely so their contents never become text.
-    $code=preg_replace('#<(script|style)\b[^>]*>.*?</\1>#is','',$code);
-
-    // Keep only the badge markup. Scripts and arbitrary containers are dropped.
-    $code=wp_kses($code,bluprint_enamad_allowed_html());
-
-    return ['code'=>$code];
+    return ['code'=>trim($code)];
 }
 
 /**
- * Return the sanitized, performance-friendly badge markup.
+ * Print the exact snippet entered in the settings screen.
  */
 function bluprint_enamad_html(){
-    static $cached=null;
-
-    if($cached!==null)return $cached;
-
     $settings=bluprint_enamad_settings();
-    $code=trim((string)$settings['code']);
-
-    if($code==='')return $cached='';
-
-    $code=preg_replace('#<(script|style)\b[^>]*>.*?</\1>#is','',$code);
-    $code=wp_kses($code,bluprint_enamad_allowed_html());
-
-    if(class_exists('WP_HTML_Tag_Processor')){
-        $processor=new WP_HTML_Tag_Processor($code);
-
-        if($processor->next_tag('A')){
-            if($processor->get_attribute('target')==='_blank'&&!$processor->get_attribute('rel')){
-                $processor->set_attribute('rel','noopener noreferrer');
-            }
-
-            if(!$processor->get_attribute('aria-label')){
-                $processor->set_attribute('aria-label','نماد اعتماد الکترونیکی اینماد');
-            }
-        }
-
-        if($processor->next_tag('IMG')){
-            $processor->set_attribute('loading','lazy');
-            $processor->set_attribute('decoding','async');
-            $processor->set_attribute('fetchpriority','low');
-            $processor->set_attribute('width','96');
-            $processor->set_attribute('height','96');
-
-            if(!$processor->get_attribute('alt')){
-                $processor->set_attribute('alt','اینماد');
-            }
-        }
-
-        return $cached=$processor->get_updated_html();
-    }
-
-    // Fallback for older WordPress versions without the HTML API.
-    $cached=preg_replace(
-        '/<img\b/i',
-        '<img loading="lazy" decoding="async" fetchpriority="low" width="96" height="96"',
-        $code,
-        1
-    );
-
-    return $cached;
+    return trim((string)$settings['code']);
 }
 
 function bluprint_enamad_register_settings(){
@@ -144,7 +66,7 @@ function bluprint_enamad_admin_page(){
     ?>
     <div class="wrap">
         <h1>اینماد</h1>
-        <p>کد کامل اینماد را از پنل خود کپی کنید و در کادر زیر قرار دهید. فقط لینک و تصویر badge نگه داشته می‌شود و اسکریپت‌های اضافه حذف می‌شوند.</p>
+        <p>کد کامل اینماد را از پنل خود کپی کنید و در کادر زیر قرار دهید. همان کد، بدون هیچ تغییری، در فوتر سایت چاپ می‌شود.</p>
 
         <form method="post" action="options.php">
             <?php settings_fields('bluprint_enamad_group'); ?>
@@ -155,7 +77,7 @@ function bluprint_enamad_admin_page(){
                     </th>
                     <td>
                         <textarea id="bluprint-enamad-code" name="bluprint_enamad[code]" rows="8" class="large-text code" dir="ltr"><?php echo esc_textarea($settings['code']); ?></textarea>
-                        <p class="description">برای حفظ سرعت سایت، تصویر اینماد به‌صورت lazy load و با ابعاد ثابت در فوتر نمایش داده می‌شود. برای حذف badge کادر را خالی کنید و ذخیره کنید.</p>
+                        <p class="description">برای حذف badge کادر را خالی کنید و ذخیره کنید.</p>
                     </td>
                 </tr>
             </table>
@@ -165,9 +87,7 @@ function bluprint_enamad_admin_page(){
         <?php if($preview!==''): ?>
             <hr>
             <h2>پیش‌نمایش</h2>
-            <div style="display:inline-flex;align-items:center;justify-content:center;width:96px;height:96px;padding:6px;border:1px solid #dcdcde;background:#fff">
-                <?php echo $preview; ?>
-            </div>
+            <div><?php echo $preview; ?></div>
         <?php endif; ?>
     </div>
     <?php
