@@ -38,6 +38,7 @@ Custom WooCommerce theme for the Bluprint storefront.
 * Kept the category chip a single consistent brand colour across every pack.
 * Added WCAG-based contrast selection for pack button text, including white icons on dark colours.
 * Raised description contrast on tinted card backgrounds.
+* Added an eNamad settings section and a lazy-loaded, fixed-size trust badge above the footer copyright.
 * Rebuilt the installation package.
 
 = 1.3.8 =

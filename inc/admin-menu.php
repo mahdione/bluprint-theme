@@ -68,6 +68,7 @@ function bluprint_admin_overview_page(){
         ['slug'=>'bluprint-term-order','title'=>'ترتیب دسته‌بندی‌ها','description'=>'مرتب‌سازی دسته‌بندی‌ها، برچسب‌ها و برندها.','capability'=>'manage_woocommerce','icon'=>'dashicons-sort'],
         ['slug'=>'bluprint-shop-archive','title'=>'آرشیو فروشگاه','description'=>'تنظیم عنوان، توضیحات و تصاویر آرشیو فروشگاه.','capability'=>'manage_woocommerce','icon'=>'dashicons-store'],
         ['slug'=>'bluprint-theme-updates','title'=>'به‌روزرسانی قالب','description'=>'بررسی و نصب نسخه‌های جدید قالب از GitHub.','capability'=>'manage_options','icon'=>'dashicons-update'],
+        ['slug'=>'bluprint-enamad','title'=>'اینماد','description'=>'نمایش نماد اعتماد الکترونیکی در فوتر.','capability'=>'manage_options','icon'=>'dashicons-shield'],
     ];
     ?>
     <div class="wrap">
