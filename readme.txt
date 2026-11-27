@@ -3,7 +3,7 @@ Contributors: bluprint
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.11
+Stable tag: 1.3.12
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,6 +31,11 @@ Custom WooCommerce theme for the Bluprint storefront.
 5. WordPress checks the newest GitHub tag on the Themes screen and in Bluprint → به‌روزرسانی قالب. If a Release contains bluprint-theme.zip it is preferred; otherwise the tag archive is used.
 
 == Changelog ==
+= 1.3.12 =
+* Added a visible fallback link when the eNamad badge image cannot load, so the footer never stays empty.
+* The exact eNamad snippet is still printed unchanged above the copyright; the fallback is hidden automatically when the image loads.
+* Rebuilt the core stylesheet bundle.
+
 = 1.3.11 =
 * Restored the eNamad badge when the saved option is empty by falling back to the required snippet.
 * The settings screen now shows the badge code even if an earlier empty save removed it.

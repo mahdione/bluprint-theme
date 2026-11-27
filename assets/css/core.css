@@ -1196,6 +1196,36 @@ body.menu-open{
     outline-offset:var(--focus-offset);
 }
 
+.site-footer__enamad-fallback{
+    display:none;
+    align-items:center;
+    justify-content:center;
+    min-height:48px;
+    padding:10px 14px;
+    border:1px solid rgba(250,248,240,.55);
+    background:rgba(250,248,240,.08);
+    color:var(--color-paper);
+    font-family:var(--font-primary);
+    font-size:13px;
+    font-weight:var(--weight-bold);
+    line-height:1.8;
+    text-decoration:none;
+    transition:background-color var(--transition-fast),color var(--transition-fast);
+}
+
+.site-footer__enamad-fallback:hover{
+    background:rgba(250,248,240,.14);
+    color:var(--color-orange);
+}
+
+.site-footer__enamad.is-failed .site-footer__enamad-fallback{
+    display:inline-flex;
+}
+
+.site-footer__enamad.is-failed img{
+    display:none;
+}
+
 .site-footer__copyright,
 .site-footer__credit{
     margin:0;

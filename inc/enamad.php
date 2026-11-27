@@ -38,10 +38,28 @@ function bluprint_enamad_sanitize($input){
 
 /**
  * Print the exact snippet entered in the settings screen.
+ *
+ * A small fallback link is shown only when the remote badge image fails, so an
+ * expired or blocked eNamad code leaves a visible verification link instead of
+ * an empty footer space.
  */
 function bluprint_enamad_html(){
     $settings=bluprint_enamad_settings();
-    return trim((string)$settings['code']);
+    $code=trim((string)$settings['code']);
+
+    if($code==='')return '';
+
+    $href='https://trustseal.enamad.ir/';
+
+    if(preg_match('/href=(["\'])(.*?)\1/i',$code,$match)){
+        $href=html_entity_decode($match[2],ENT_QUOTES,'UTF-8');
+    }
+
+    $fallback='<a class="site-footer__enamad-fallback" href="'.esc_url($href).'" target="_blank" rel="noopener noreferrer">مشاهده نماد اعتماد الکترونیکی</a>';
+
+    $script='<script>(function(){var s=document.currentScript;if(!s)return;var w=s.closest(".site-footer__enamad");if(!w)return;var img=w.querySelector("img");if(!img)return;var fail=function(){w.classList.add("is-failed")};img.addEventListener("error",fail);if(img.complete&&img.naturalWidth===0)fail();})();</script>';
+
+    return $code.$fallback.$script;
 }
 
 function bluprint_enamad_register_settings(){
