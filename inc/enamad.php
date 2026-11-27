@@ -9,17 +9,24 @@ defined('ABSPATH')||exit;
  * the provider's own markup and scripts keep working without modification.
  */
 
-function bluprint_enamad_defaults(){
-    $code=<<<'HTML'
+function bluprint_enamad_reference_code(){
+    return <<<'HTML'
 <a referrerpolicy='origin' target='_blank' href='https://trustseal.enamad.ir/?id=8940400&Code=DsHjQIcs1zZzJ0j8LJ32hjhA6qxE9uXX'><img referrerpolicy='origin' src='https://trustseal.enamad.ir/logo.aspx?id=8940400&Code=DsHjQIcs1zZzJ0j8LJ32hjhA6qxE9uXX' alt='' style='cursor:pointer' code='DsHjQIcs1zZzJ0j8LJ32hjhA6qxE9uXX'></a>
 HTML;
+}
 
-    return ['code'=>$code];
+function bluprint_enamad_defaults(){
+    return ['code'=>bluprint_enamad_reference_code()];
 }
 
 function bluprint_enamad_settings(){
     $stored=get_option('bluprint_enamad',[]);
-    return wp_parse_args(is_array($stored)?$stored:[],bluprint_enamad_defaults());
+    $settings=wp_parse_args(is_array($stored)?$stored:[],bluprint_enamad_defaults());
+
+    // An empty option (from an earlier save) must not hide the required badge.
+    if(trim((string)$settings['code'])==='')$settings['code']=bluprint_enamad_reference_code();
+
+    return $settings;
 }
 
 function bluprint_enamad_sanitize($input){
